@@ -151,7 +151,7 @@ label{display:block;font-size:14px;font-weight:500;margin-bottom:6px}
 input[type=number],select{width:100%;font:500 16px var(--f-body);padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
 input[type=range]{width:100%;accent-color:var(--indigo)}
 .field{margin-bottom:16px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
 .rowv{display:flex;justify-content:space-between;align-items:baseline}
 .rowv output{font-weight:600;font-variant-numeric:tabular-nums}
 .try-out{display:flex;gap:28px;margin-top:6px;flex-wrap:wrap}
@@ -189,6 +189,30 @@ input[type=range]{width:100%;accent-color:var(--indigo)}
 .dash{stroke:var(--ink3);stroke-dasharray:4 4;stroke-width:1.2}
 .btn-row{display:flex;gap:10px;margin-top:6px}
 
+.tabs{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--surface);margin:8px 0 14px;flex-wrap:wrap}
+.tab{border:0;background:transparent;color:var(--ink2);font:600 14px var(--f-body);padding:8px 16px;border-radius:999px;cursor:pointer}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--indigo);color:var(--on-indigo)}
+.note{font-size:15px;color:var(--ink2);margin:10px 0 0}
+.msg{border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:15px}
+.msg.warn{background:var(--weld-soft);color:var(--ink)}
+.field label small{display:block;font-size:12px;font-weight:400;color:var(--ink3);margin-top:1px}
+.echo{font-size:13px;color:var(--ink3);margin-top:4px;font-variant-numeric:tabular-nums}
+.help{font-size:13px;color:var(--ink3);margin:-4px 0 14px}
+.inwarn{font-size:14px;color:var(--ink);background:var(--weld-soft);border-radius:8px;padding:8px 10px;margin:12px 0 0}
+.linkish{border:0;background:none;color:var(--indigo);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+.area-neg{fill:var(--weld-soft)}
+.area-pos{fill:var(--green-soft)}
+.pay-lab{fill:var(--ink);font:600 12px var(--f-body)}
+.slide ul{margin:0;padding-left:18px;color:var(--ink2);font-size:15px}
+.slide li{margin:0 0 7px}
+.dg-line2{stroke:var(--ink3);stroke-width:1;fill:none;opacity:.5}
+.dg-ln{stroke:var(--indigo);stroke-width:1.5;fill:none}
+.dg-cap{fill:var(--ink);font:600 13px var(--f-body)}
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+.reasons .slide{flex:none;width:auto;min-width:0}
+@media (max-width:980px){.reasons{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.reasons{grid-template-columns:1fr}}
 /* carousel */
 .carousel{position:relative}
 .track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 10px;-webkit-overflow-scrolling:touch}
@@ -326,6 +350,7 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
     </a>
     <nav id="nav" aria-label="Sections">
       <a href="#overview" data-page="overview">Overview</a>
+      <a href="#gateway" data-page="gateway">Why a gateway</a>
       <a href="#how" data-page="how">How it works</a>
       <a href="#costs" data-page="costs">Costs and savings</a>
       <a href="#vendors" data-page="vendors">Vendor strategy</a>
@@ -345,10 +370,10 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
   <div class="hero">
     <div>
       <h1>One unit of AI usage across every model we buy</h1>
-      <p class="lede" style="margin-top:18px">LOOM is a new product that tracks token usage across Anthropic, OpenAI and the other models we use as credits, with a weekly tier for each person. It gives procurement the data to forecast, negotiate and cut AI spend.</p>
+      <p class="lede" style="margin-top:18px">LOOM is SQ's new LLM gateway: one controlled, auditable, cost-managed entry point to every AI model we use, instead of each team holding its own vendor keys and contracts. It tracks usage as credits, with a weekly tier for each person, and gives procurement the data to forecast, negotiate and cut AI spend.</p>
       <div class="decision">
         <b>Decision requested</b>
-        <p>Approve building LOOM with tech (and a product team if needed), plus a procurement program that uses its data across every vendor.</p>
+        <p>Approve building LOOM, SQ's LLM gateway, with tech (and a product team if needed), plus a procurement program that uses its data across every vendor.</p>
       </div>
     </div>
     <svg id="weave" viewBox="-40 0 740 380" role="img" aria-label="Five vertical threads for the tiers cross three horizontal threads for Anthropic, OpenAI and other models. Thicker threads carry more weekly credits."></svg>
@@ -386,7 +411,56 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
     </ul>
   </div>
 
-  <div class="pager"><span></span><button class="btn primary" data-go="how">Next: How it works <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg></button></div>
+  <div class="pager"><span></span><button class="btn primary" data-go="gateway">Next: Why a gateway <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg></button></div>
+</section>
+
+<!-- ============ GATEWAY ============ -->
+<section class="page" id="gateway" hidden>
+  <div class="page-head">
+    <h2>Why a gateway</h2>
+    <p class="lede">LOOM is an LLM gateway: one controlled, auditable, cost-managed entry point to every AI model SQ uses. Teams call LOOM instead of holding their own vendor keys and contracts.</p>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 760 330" role="img" aria-label="Without a gateway, four teams each connect to three vendors: 12 connections and 12 sets of keys. With LOOM, the four teams connect to LOOM, which holds the keys and connects to each of the three vendors once: 7 connections and 3 sets of keys.">
+      <text class="dg-cap" x="20" y="26">Without a gateway</text>
+      <text class="dg-s" x="20" y="44">Every team holds its own keys and contracts</text>
+      <g id="gw-left"></g>
+      <line x1="380" x2="380" y1="14" y2="296" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <text class="dg-cap" x="400" y="26">With LOOM</text>
+      <text class="dg-s" x="400" y="44">One entry point, with the keys held once</text>
+      <g id="gw-right"></g>
+      <text class="dg-s" x="20" y="318">12 connections, 12 sets of keys and contracts</text>
+      <text class="dg-s" x="400" y="318">7 connections, 3 sets of keys, all held by LOOM</text>
+    </svg>
+    <div class="dg-mobile">
+      <div class="mbox"><b>Without a gateway</b><span>Every team holds its own vendor keys and contracts, with a separate connection to each vendor. With four teams and three vendors that is 12 connections and 12 sets of keys.</span></div>
+      <div style="height:8px"></div>
+      <div class="mbox main"><b>With LOOM</b><span>Every team calls LOOM. LOOM holds the keys and connects to each vendor once. The same four teams and three vendors need 7 connections and 3 sets of keys.</span></div>
+    </div>
+  </div>
+  <p class="small muted" style="margin-top:10px">Illustration: four teams and three vendors. LOOM does not exist yet; this is the design we propose to build.</p>
+
+  <div class="section">
+    <h3 class="sec">Six business reasons</h3>
+    <div class="reasons" role="list" aria-label="Six business reasons">
+        <article class="slide" role="listitem"><h3>Cost governance</h3><ul><li>Quotas per user and per tier stop spending from running away</li><li>One bill and one set of chargebacks for the whole company</li><li>Shared reserved capacity (PTU) and batch APIs at about 50% less cost, which no single team could negotiate alone</li></ul><p class="out"><b>For procurement:</b> a spend ceiling and pooled buying power.</p></article>
+        <article class="slide" role="listitem"><h3>Security and compliance</h3><ul><li>Vendor keys stay with LOOM, so they do not spread across teams</li><li>Every call is tied to a real associate or customer through required audit headers, so InfoSec can trace prompt injection and misuse</li><li>Traffic stays on approved, vetted providers inside SQ's network rules</li></ul><p class="out"><b>For procurement:</b> fewer keys and contracts, and a short list of approved vendors.</p></article>
+        <article class="slide" role="listitem"><h3>Accountability</h3><ul><li>Usage is tracked per user and per app (Druid/Kafka)</li><li>It feeds dashboards, tiers and ROI tracking</li></ul><p class="out"><b>For finance:</b> the demand data behind the forecast, and what each team gets for its spend.</p></article>
+        <article class="slide" role="listitem"><h3>Flexibility across vendors</h3><ul><li>One integration gives access to OpenAI, Anthropic, Google and models SQ hosts itself</li><li>Teams switch models or providers without rewriting code, and new providers reach everyone at once</li><li>SQ is not locked into one vendor and keeps leverage when negotiating</li></ul><p class="out"><b>For procurement:</b> a believable switch threat.</p></article>
+        <article class="slide" role="listitem"><h3>Reliability and fair sharing</h3><ul><li>Contention management shares limited capacity across thousands of users and apps</li><li>Quota and contention headers let clients handle limits gracefully</li></ul><p class="out"><b>For finance:</b> reserved capacity stretches across more users.</p></article>
+        <article class="slide" role="listitem"><h3>Faster delivery for teams</h3><ul><li>The API matches the providers' own, so standard SDKs work by changing the base URL</li><li>No per-team vendor onboarding, contracts or key management</li></ul><p class="out"><b>For procurement:</b> fewer contracts to run and review.</p></article>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="callout"><b>How it fits together.</b> The gateway is the control point, credits are the unit it counts in, and tiers are the policy it enforces. Procurement gets the data, security gets the audit trail, and teams get one simple integration. The next page shows how each call is handled and how credits are worked out.</div>
+  </div>
+
+  <div class="pager">
+    <button class="btn" data-go="overview"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg> Back: Overview</button>
+    <button class="btn primary" data-go="how">Next: How it works <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg></button>
+  </div>
 </section>
 
 <!-- ============ HOW IT WORKS ============ -->
@@ -397,7 +471,7 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
   </div>
 
   <div class="diagram">
-    <svg viewBox="0 0 760 270" role="img" aria-label="People by tier send requests to LOOM, which converts usage to credits and passes it to Anthropic, OpenAI and other models. Each vendor has its own contract.">
+    <svg viewBox="0 0 760 270" role="img" aria-label="People by tier send requests to LOOM, the gateway, which holds the vendor keys, audits every call, counts usage as credits and enforces tiers and caps, then passes requests to Anthropic, OpenAI and other models including self-hosted ones. Each vendor has its own contract.">
       <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--ink3)"/></marker></defs>
       <rect class="dg-box" x="16" y="70" width="150" height="130" rx="10"/>
       <text class="dg-t" x="91" y="108" text-anchor="middle">People</text>
@@ -405,35 +479,47 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
       <text class="dg-s" x="91" y="146" text-anchor="middle">Elite, VP</text>
       <text class="dg-s" x="91" y="170" text-anchor="middle">Weekly credit cap</text>
       <path class="dg-line" d="M166 135H236" marker-end="url(#arr)"/>
-      <rect class="dg-main" x="238" y="30" width="270" height="210" rx="12"/>
-      <text class="dg-t" x="373" y="64" text-anchor="middle" style="font-size:18px;font-family:var(--f-display)">LOOM</text>
-      <text class="dg-s" x="373" y="92" text-anchor="middle">Connects to every model provider</text>
-      <text class="dg-s" x="373" y="114" text-anchor="middle">Counts tokens per request</text>
-      <text class="dg-s" x="373" y="136" text-anchor="middle">Converts them to credits</text>
-      <text class="dg-s" x="373" y="158" text-anchor="middle">Applies tiers and weekly caps</text>
-      <text class="dg-s" x="373" y="180" text-anchor="middle">Routes upgrade requests to approval</text>
-      <text class="dg-s" x="373" y="202" text-anchor="middle">Reports usage by user, team, vendor</text>
+      <rect class="dg-main" x="238" y="62" width="270" height="146" rx="12"/>
+      <text class="dg-t" x="373" y="96" text-anchor="middle" style="font-size:18px;font-family:var(--f-display)">LOOM</text>
+      <text class="dg-s" x="373" y="124" text-anchor="middle">One entry point for every request</text>
+      <text class="dg-s" x="373" y="146" text-anchor="middle">Holds keys and audits every call</text>
+      <text class="dg-s" x="373" y="168" text-anchor="middle">Counts usage as credits</text>
+      <text class="dg-s" x="373" y="190" text-anchor="middle">Enforces tiers, quotas and caps</text>
       <path class="dg-line" d="M508 135H560M508 135C530 135 540 70 560 70M508 135C530 135 540 200 560 200" marker-end="url(#arr)"/>
       <rect class="dg-box" x="562" y="42" width="182" height="56" rx="10"/><circle cx="582" cy="70" r="6" fill="var(--weld)"/>
       <text class="dg-t" x="598" y="75">Anthropic</text>
       <rect class="dg-box" x="562" y="107" width="182" height="56" rx="10"/><circle cx="582" cy="135" r="6" fill="var(--green)"/>
       <text class="dg-t" x="598" y="140">OpenAI</text>
       <rect class="dg-box" x="562" y="172" width="182" height="56" rx="10"/><circle cx="582" cy="200" r="6" fill="var(--slate)"/>
-      <text class="dg-t" x="598" y="205">Other models</text>
+      <text class="dg-t" x="598" y="196">Other models</text>
+      <text class="dg-s" x="598" y="214">including self-hosted</text>
     </svg>
     <div class="dg-mobile">
       <div class="mbox"><b>People</b><span>Lite, Standard, Power, Elite and VP, each with a weekly credit cap</span></div>
       <div class="marrow"></div>
-      <div class="mbox main"><b>LOOM</b><span>Connects to every model provider, counts tokens per request, converts them to credits, applies tiers and weekly caps, routes upgrade requests to approval, and reports usage by user, team and vendor</span></div>
+      <div class="mbox main"><b>LOOM</b><span>One entry point for every request. Holds the vendor keys, audits every call, counts usage as credits, and enforces tiers, quotas and caps</span></div>
       <div class="marrow"></div>
       <div class="mbox"><b><span class="dotc" style="background:var(--weld);display:inline-block;margin:0"></span>Anthropic</b></div>
       <div style="height:8px"></div>
       <div class="mbox"><b><span class="dotc" style="background:var(--green);display:inline-block;margin:0"></span>OpenAI</b></div>
       <div style="height:8px"></div>
-      <div class="mbox"><b><span class="dotc" style="background:var(--slate);display:inline-block;margin:0"></span>Other models</b></div>
+      <div class="mbox"><b><span class="dotc" style="background:var(--slate);display:inline-block;margin:0"></span>Other models, including self-hosted</b></div>
     </div>
   </div>
   <p class="small muted" style="margin-top:10px">Credits measure demand. Contracts set price. LOOM changes what we know, not what a vendor charges.</p>
+
+  <div class="section">
+    <h3 class="sec">What LOOM does</h3>
+    <p class="lede" style="margin-bottom:18px">LOOM acts as a centralized proxy for all generative AI interactions at SQ, so teams get consistent safety, auditing and usage controls without building them.</p>
+    <div class="comp">
+      <div><b>Unified API</b><span>One interface for multiple LLM providers, matching the providers' own.</span></div>
+      <div><b>Interception and monitoring</b><span>Every request and response passes through LOOM.</span></div>
+      <div><b>Centralized logging and analytics</b><span>One record of usage for the whole company.</span></div>
+      <div><b>Content filtering and safety</b><span>The same safety controls for every team.</span></div>
+      <div><b>Authentication and authorization</b><span>Who can call what, tied to a real person.</span></div>
+      <div><b>Usage tracking and quota management</b><span>This is where credits and tiers come in.</span></div>
+    </div>
+  </div>
 
   <div class="section split">
     <div>
@@ -487,7 +573,7 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
   </div>
 
   <div class="pager">
-    <button class="btn" data-go="overview"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg> Back: Overview</button>
+    <button class="btn" data-go="gateway"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg> Back: Why a gateway</button>
     <button class="btn primary" data-go="costs">Next: Costs and savings <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg></button>
   </div>
 </section>
@@ -510,9 +596,11 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
       <div class="field"><div class="rowv"><label for="disc">Negotiated discount</label><output id="disc-v"></output></div><input id="disc" type="range" min="0" max="30" step="1"></div>
       <div class="field"><div class="rowv"><label for="shift">Volume moved to lighter models</label><output id="shift-v"></output></div><input id="shift" type="range" min="0" max="50" step="1"></div>
       <div class="row2">
-        <div class="field"><label for="in-build">Build cost ($)</label><input id="in-build" type="number" min="0" step="10000"></div>
-        <div class="field"><label for="in-run">Yearly run cost ($)</label><input id="in-run" type="number" min="0" step="10000"></div>
+        <div class="field"><label for="in-build">Build cost ($)<small>paid once</small></label><input id="in-build" type="number" min="0" step="10000" inputmode="decimal"><div class="echo" id="echo-build"></div></div>
+        <div class="field"><label for="in-run">Run cost ($)<small>paid every year</small></label><input id="in-run" type="number" min="0" step="10000" inputmode="decimal"><div class="echo" id="echo-run"></div></div>
       </div>
+      <p class="help">Build cost is paid once at the start. Run cost is paid every year after.</p>
+      <p class="inwarn" id="input-warn" role="status" aria-live="polite" hidden></p>
       <div class="btn-row"><button class="btn ghost" id="reset" type="button">Reset to defaults</button></div>
       <p class="small muted" style="margin:14px 0 0">Fixed: $0.000015 per credit (the Sonnet 4.6 list price), 52 weeks, lighter model at 0.33× (Haiku-4.5). Build and run cost are placeholders for tech to estimate.</p>
     </aside>
@@ -537,10 +625,34 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
           <p class="cap">Moving volume to lighter models comes first, then the discount applies to what remains.</p>
           <div id="ch-fall"></div>
         </div>
-        <div class="chart">
-          <h4>Cumulative net benefit over 24 months</h4>
-          <p class="cap">Starts at minus the build cost and climbs by the net monthly saving.</p>
-          <div id="ch-cum"></div>
+        <div class="chart" id="cum-block">
+          <h4>Cumulative net benefit</h4>
+          <p class="cap">What LOOM changes against the AI spend we would have anyway: savings, minus the yearly run cost, minus the build cost paid up front. Our AI spend does not go away; this shows only the difference LOOM makes.</p>
+          <div class="tabs" role="tablist" aria-label="Chart view">
+            <button class="tab" role="tab" id="tab-24" aria-selected="true" aria-controls="panel-24" type="button">First 24 months</button>
+            <button class="tab" role="tab" id="tab-pay" aria-selected="false" aria-controls="panel-pay" tabindex="-1" type="button">Payback and return</button>
+          </div>
+          <div role="tabpanel" id="panel-24" aria-labelledby="tab-24">
+            <div id="ch-cum"></div>
+            <p class="note" id="cum-note"></p>
+          </div>
+          <div role="tabpanel" id="panel-pay" aria-labelledby="tab-pay" hidden>
+            <div class="msg warn" id="pay-warn" hidden></div>
+            <div id="ch-pay"></div>
+            <div class="strip" style="margin:18px 0 14px">
+              <div><div class="lab">Break-even</div><div class="big" id="pt-be">-</div><div class="sub" id="pt-be-sub"></div></div>
+              <div><div class="lab">Net benefit at chart end</div><div class="big" id="pt-end">-</div><div class="sub" id="pt-end-sub"></div></div>
+              <div><div class="lab">Return on build cost</div><div class="big" id="pt-roi">-</div><div class="sub" id="pt-roi-sub"></div></div>
+              <div><div class="lab">Net savings a year</div><div class="big" id="pt-net">-</div><div class="sub" id="pt-net-sub"></div></div>
+            </div>
+            <p class="note" id="pay-story"></p>
+            <div id="ms-wrap" style="margin-top:16px">
+              <div class="tbl-wrap"><table>
+                <thead><tr><th>When</th><th class="r">Savings after run cost</th><th class="r">Net after build cost</th><th class="r">Return</th><th>Status</th></tr></thead>
+                <tbody id="milestones"></tbody>
+              </table></div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -584,7 +696,7 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
     <div class="track" tabindex="0">
       <article class="slide"><h3>Forecast from the tiers</h3><p>Price each tier and multiply by headcount to set a budget ceiling. Compare it with real use to find over-allocation.</p><p class="out"><b>Outcome:</b> a budget we can defend.</p></article>
       <article class="slide"><h3>Negotiate on one unit</h3><p>Put the same demand in front of Anthropic and OpenAI, compare the effective price per credit, and move volume to the better offer.</p><p class="out"><b>Outcome:</b> discounts, price protection and better terms.</p></article>
-      <article class="slide"><h3>Consolidate overlapping tools</h3><p>Bring each vendor's spend under one agreement so it sees our full volume. Fold tools such as Code Puppy into LOOM's shared credit model.</p><p class="out"><b>Outcome:</b> volume tiers and fewer duplicate tools.</p></article>
+      <article class="slide"><h3>Consolidate overlapping tools</h3><p>Bring each vendor's spend under one agreement so it sees our full volume. LOOM holds the vendor keys, so teams stop holding their own contracts, and tools such as Code Puppy fold into its shared credit model.</p><p class="out"><b>Outcome:</b> volume tiers and fewer duplicate tools.</p></article>
       <article class="slide"><h3>Use approvals as demand data</h3><p>Every request for more credits shows who needs more and why. Tiers and commitments are sized to demand we can see.</p><p class="out"><b>Outcome:</b> right-sized tiers and commitments.</p></article>
       <article class="slide"><h3>Score every new vendor</h3><p>Judge any new AI tool on usage visibility, a published rate card, enforced caps, an approval path and contract flexibility.</p><p class="out"><b>Outcome:</b> faster, fairer evaluations.</p></article>
     </div>
@@ -650,18 +762,20 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
 <section class="page" id="build" hidden>
   <div class="page-head">
     <h2>Building LOOM</h2>
-    <p class="lede">LOOM does not exist yet. A first release needs eight components. Tech builds it, and the other teams shape and use it.</p>
+    <p class="lede">LOOM does not exist yet. A first release needs ten components. Tech builds it, and the other teams shape and use it.</p>
   </div>
 
   <div class="comp">
-    <div><b>Provider connectors</b><span>Pull or intercept usage from each provider in use: Anthropic, OpenAI and others.</span></div>
-    <div><b>Usage capture</b><span>Records tokens per request by user, model, token type and surface.</span></div>
+    <div><b>Gateway API and provider connectors</b><span>One API that matches the providers' own, connected to Anthropic, OpenAI, Google and self-hosted models.</span></div>
+    <div><b>Authentication, audit headers and key custody</b><span>Holds the vendor keys and ties every call to a real associate or customer.</span></div>
+    <div><b>Content filtering and safety</b><span>Filters requests and responses with the same controls for every team.</span></div>
+    <div><b>Usage capture and logging</b><span>Records tokens per request by user and app, with central logging and analytics (Druid/Kafka).</span></div>
     <div><b>Rate card</b><span>Holds token and model weights for every model, with a change log.</span></div>
     <div><b>Credit ledger</b><span>Converts usage to credits, totals it per user and resets it weekly.</span></div>
-    <div><b>Tiers, caps and hard stop</b><span>Assigns each person a tier and enforces the weekly limit.</span></div>
-    <div><b>Usage view and reports</b><span>A /usage view per person, plus trends and exports for admins and procurement.</span></div>
+    <div><b>Tiers, quotas, caps and contention</b><span>Assigns each person a tier, enforces the limit, shares limited capacity fairly and returns quota headers.</span></div>
+    <div><b>Usage view and reports</b><span>A /usage view per person, plus dashboards, ROI tracking and exports for admins and procurement.</span></div>
     <div><b>Approval workflow</b><span>A ServiceNow request with demand fields; approved changes update the tier.</span></div>
-    <div><b>Reconciliation</b><span>A monthly check of credits against vendor invoices.</span></div>
+    <div><b>Reconciliation and chargeback</b><span>A monthly check of credits against invoices, and one set of chargebacks.</span></div>
   </div>
 
   <div class="section">
@@ -698,9 +812,9 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
       <div class="track" tabindex="0">
         <article class="slide"><h3>Tech and platform</h3><p><b>We need:</b> to build and host LOOM, and to confirm how requests reach each provider.</p><p class="out"><b>For them:</b> one place to see and cap model usage, and fewer surprise bills.</p></article>
         <article class="slide"><h3>Product team (optional)</h3><p><b>We need:</b> an owner for requirements, tiers and experience if LOOM grows past a tech-only build.</p><p class="out"><b>For them:</b> a clear product, owner and roadmap.</p></article>
-        <article class="slide"><h3>Finance</h3><p><b>We need:</b> invoices, contract terms, chargeback design and monthly reconciliation.</p><p class="out"><b>For them:</b> forecastable AI spend and a base for budgeting.</p></article>
-        <article class="slide"><h3>Security and legal</h3><p><b>We need:</b> review of data terms, and of any new contract or tool.</p><p class="out"><b>For them:</b> fewer unmanaged tools and API keys.</p></article>
-        <article class="slide"><h3>Data and analytics</h3><p><b>We need:</b> reports and exports from the credit ledger.</p><p class="out"><b>For them:</b> clean usage data for planning.</p></article>
+        <article class="slide"><h3>Finance</h3><p><b>We need:</b> invoices, contract terms, chargeback design and monthly reconciliation.</p><p class="out"><b>For them:</b> one bill, one set of chargebacks and forecastable AI spend.</p></article>
+        <article class="slide"><h3>Security (InfoSec) and legal</h3><p><b>We need:</b> the audit-header standard, key custody and network rules, plus review of data terms and of any new contract or tool.</p><p class="out"><b>For them:</b> every call traceable to a real person, to trace prompt injection and misuse, and fewer unmanaged keys.</p></article>
+        <article class="slide"><h3>Data and analytics</h3><p><b>We need:</b> the usage pipeline (Druid/Kafka) and reports from the credit ledger.</p><p class="out"><b>For them:</b> clean usage data for dashboards, tiers and ROI tracking.</p></article>
         <article class="slide"><h3>IT service management</h3><p><b>We need:</b> the ServiceNow form and workflow changes.</p><p class="out"><b>For them:</b> a defined path instead of ad hoc requests.</p></article>
       </div>
       <div class="car-ctl">
@@ -776,12 +890,14 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
       <div><b>Over-committing to a vendor</b><span>Commit to expected spend, not the ceiling, with a ramp and annual true-up.</span></div>
       <div><b>Vendors refuse rollover</b><span>Fall back to extension, true-up or conversion, or stay pay-as-you-go for the uncertain share.</span></div>
       <div><b>The rate card goes stale</b><span>Document it, keep a change log, and reconcile to invoices monthly.</span></div>
+      <div><b>Vendor keys concentrate in one place</b><span>Hold them in a managed secrets store, limit who can change them, rotate them and log every access.</span></div>
+      <div><b>LOOM becomes a single point of failure</b><span>Design for failover across providers, use contention management and quota headers, and monitor availability.</span></div>
     </div>
   </div>
 
   <div class="section">
     <details>
-      <summary>Thirteen facts to confirm before we negotiate and build</summary>
+      <summary>Sixteen facts to confirm before we negotiate and build</summary>
       <ul class="checks">
         <li><input type="checkbox" id="g1"><label for="g1" style="margin:0;font-weight:400">How requests reach each provider today, and what usage data is already captured</label></li>
         <li><input type="checkbox" id="g2"><label for="g2" style="margin:0;font-weight:400">Which models and providers the company uses, and which teams use them</label></li>
@@ -796,6 +912,9 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
         <li><input type="checkbox" id="g11"><label for="g11" style="margin:0;font-weight:400">The contract owner and renewal date for each vendor agreement</label></li>
         <li><input type="checkbox" id="g12"><label for="g12" style="margin:0;font-weight:400">Whether Anthropic and OpenAI spend both count toward our cloud commitment</label></li>
         <li><input type="checkbox" id="g13"><label for="g13" style="margin:0;font-weight:400">Approval criteria and the extra fields on the ServiceNow form</label></li>
+        <li><input type="checkbox" id="g14"><label for="g14" style="margin:0;font-weight:400">Which teams hold their own vendor keys and contracts today, and which call vendors directly</label></li>
+        <li><input type="checkbox" id="g15"><label for="g15" style="margin:0;font-weight:400">InfoSec requirements: the required audit headers, log retention and network rules</label></li>
+        <li><input type="checkbox" id="g16"><label for="g16" style="margin:0;font-weight:400">Any reserved-capacity (PTU) or batch arrangements that exist today, and who holds them</label></li>
       </ul>
     </details>
     <details>
@@ -803,6 +922,7 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink
       <ul class="src">
         <li>One credit is valued at $0.000015, a working estimate that equals Sonnet 4.6's list output price of $15 per million tokens. The weights, tiers and tier sizes are proposed.</li>
         <li>Headcount (100 / 200 / 100 / 20 / 5), 60% utilization, a 10% discount, 10% of volume moved to lighter models and a $100,000 build cost are placeholders.</li>
+        <li>The six gateway reasons and the gateway features come from SQ's description of the LOOM LLM Gateway; tech should confirm each one before we rely on it in a negotiation. PTU means shared reserved capacity, and the 50% batch discount is the vendors' own list pricing for work that can wait.</li>
         <li>Opus and OpenAI weights are illustrative and are derived from list prices; prices change often. Vendor prices and terms were checked on 6 October 2026.</li>
         <li><a href="https://claude.com/pricing">Anthropic pricing</a>, <a href="https://www.anthropic.com/legal/credit-terms">Anthropic Credit Terms</a>, <a href="https://help.openai.com/en/articles/8264644-setting-up-and-managing-prepaid-api-billing">OpenAI prepaid billing</a>, <a href="https://claude.com/platform/marketplace">Claude Marketplace</a>, <a href="https://claude.com/partners/microsoft-foundry">Claude in Microsoft Foundry</a>, <a href="https://benchlm.ai/openai/api-pricing">BenchLM OpenAI pricing</a> (third party).</li>
       </ul>
@@ -916,6 +1036,24 @@ function weave(){
   $('weave').innerHTML=h;
 }
 
+/* ---------- gateway: before / after diagram ---------- */
+function gatewayDiagram(){
+  var teams=['Team A','Team B','Team C','Team D'],vend=['Anthropic','OpenAI','Google'],ty=[70,120,170,220],vy=[95,145,195];
+  var L='',R='';
+  teams.forEach(function(t,i){vend.forEach(function(v,j){L+='<path class="dg-line2" d="M112 '+(ty[i]+17)+'L268 '+(vy[j]+17)+'"/>'})});
+  teams.forEach(function(t,i){
+    L+='<rect class="dg-box" x="20" y="'+ty[i]+'" width="92" height="34" rx="8"/><text class="dg-t" x="66" y="'+(ty[i]+22)+'" text-anchor="middle" style="font-size:13px">'+t+'</text>';
+    R+='<rect class="dg-box" x="400" y="'+ty[i]+'" width="92" height="34" rx="8"/><text class="dg-t" x="446" y="'+(ty[i]+22)+'" text-anchor="middle" style="font-size:13px">'+t+'</text>';
+    R+='<path class="dg-ln" d="M492 '+(ty[i]+17)+'H540"/>';
+  });
+  vend.forEach(function(v,j){
+    L+='<rect class="dg-box" x="268" y="'+vy[j]+'" width="92" height="34" rx="8"/><text class="dg-t" x="314" y="'+(vy[j]+22)+'" text-anchor="middle" style="font-size:13px">'+v+'</text>';
+    R+='<rect class="dg-box" x="668" y="'+vy[j]+'" width="84" height="34" rx="8"/><text class="dg-t" x="710" y="'+(vy[j]+22)+'" text-anchor="middle" style="font-size:13px">'+v+'</text>';
+    R+='<path class="dg-ln" d="M620 '+(vy[j]+17)+'H668"/>';
+  });
+  R+='<rect class="dg-main" x="540" y="62" width="80" height="200" rx="10"/><text class="dg-t" x="580" y="158" text-anchor="middle" style="font-size:18px;font-family:var(--f-display)">LOOM</text><text class="dg-s" x="580" y="178" text-anchor="middle">holds the keys</text>';
+  $('gw-left').innerHTML=L;$('gw-right').innerHTML=R;
+}
 /* ---------- charts ---------- */
 function cw(id){var w=$(id).clientWidth;return Math.max(300,Math.min(720,w||640))}
 function chartTier(d){
@@ -955,28 +1093,126 @@ function chartFall(d){
   });
   $('ch-fall').innerHTML=h+'</svg>';
 }
-function chartCum(d){
-  var W=cw('ch-cum'),H=260,L=60,R=18,T=18,B=40,pw=W-L-R,ph=H-T-B,N=24,monthly=d.net/12;
-  var vals=[];for(var m=0;m<=N;m++)vals.push(-S.build+monthly*m);
-  var lo=Math.min.apply(null,vals.concat([0])), hi=Math.max.apply(null,vals.concat([0]));
-  if(hi-lo<1){hi=lo+1}
-  var X=function(m){return L+pw*m/N}, Y=function(v){return T+ph*(hi-v)/(hi-lo)};
-  var h='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Cumulative net benefit over 24 months">';
-  [lo,0,hi].forEach(function(v){
-    h+='<line class="'+(v===0?'zero':'gl')+'" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v).toFixed(1)+'" y2="'+Y(v).toFixed(1)+'"/>';
-    h+='<text class="ax" x="'+(L-8)+'" y="'+(Y(v)+4).toFixed(1)+'" text-anchor="end">'+money(v)+'</text>';
+/* ---------- payback helpers (pure functions) ---------- */
+var HZ=[12,18,24,36,48,60,72,84,96,120,144,180,240];
+/* months shown on the payback chart: enough to see break-even and the climb after it */
+function payHorizon(pay,net){
+  if(!(net>0)||!isFinite(pay))return 60;
+  var target=Math.max(pay*1.5,pay+12,12);
+  for(var i=0;i<HZ.length;i++){if(HZ[i]>=target)return HZ[i]}
+  return 240;
+}
+function xStep(N){var st=[1,2,3,6,12,24,48,60];for(var i=0;i<st.length;i++){if(N/st[i]<=8)return st[i]}return 60}
+function niceStep(r){var p=Math.pow(10,Math.floor(Math.log(r)/Math.LN10)),f=r/p;return (f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*p}
+function yTicks(lo,hi){
+  var step=niceStep((hi-lo)/4),start=Math.ceil(lo/step-1e-9)*step,n=Math.floor((hi-start)/step+1e-9),t=[];
+  for(var k=0;k<=n;k++){var v=start+k*step;t.push(Math.abs(v)<step*1e-9?0:v)}
+  return t;
+}
+function durText(m){
+  if(!(m>0))return 'immediately';
+  var r=Math.round(m);
+  if(r<1)return 'under 1 month';
+  var y=Math.floor(r/12),mo=r%12,a=[];
+  if(y)a.push(y+(y>1?' yrs':' yr'));
+  if(mo)a.push(mo+' mo');
+  return a.join(' ');
+}
+function payShort(d){if(!isFinite(d.pay))return 'None';if(S.build<=0)return 'Immediate';return d.pay.toFixed(1)+' mo'}
+function payWords(m){return m>240?'more than 20 years':durText(m)}
+function signed(n,fmt){return (n>0?'+':'')+fmt(n)}
+function pctText(x){return (x>0?'+':'')+Math.round(x).toLocaleString('en-US')+'%'}
+/* cumulative net benefit after m months: monthly net savings times m, minus the build cost paid up front */
+function cumAt(d,m){return -S.build+(d.net/12)*m}
+
+/* ---------- cumulative net benefit chart (any number of months) ---------- */
+function poly(pts,cls){return '<polygon class="'+cls+'" points="'+pts.map(function(q){return q[0].toFixed(1)+','+q[1].toFixed(1)}).join(' ')+'"/>'}
+function drawCum(id,N,d){
+  var W=cw(id),H=290,L=66,R=22,T=28,B=48,pw=W-L-R,ph=H-T-B,build=S.build,hasPay=d.net>0&&build>0&&isFinite(d.pay);
+  var v0=cumAt(d,0),v1=cumAt(d,N);
+  var lo=Math.min(v0,v1,0),hi=Math.max(v0,v1,0);
+  if(!(hi-lo>0))hi=lo+1;
+  var pad=(hi-lo)*0.1;hi+=pad;if(lo<0)lo-=pad*0.4;
+  var X=function(m){return L+pw*m/N},Y=function(v){return T+ph*(hi-v)/(hi-lo)};
+  var x0=X(0),x1=X(N),y0=Y(v0),y1=Y(v1),Z=Y(0);
+  var label='Cumulative net benefit over '+N+' months, from '+money(v0)+' to '+money(v1)+'.'+(hasPay&&d.pay<=N?' Break-even after '+d.pay.toFixed(1)+' months.':'');
+  var h='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+label+'">';
+  /* shaded areas: yellow while the build cost is not yet recovered, green once it is */
+  if(v0<=0&&v1<=0)h+=poly([[x0,Z],[x0,y0],[x1,y1],[x1,Z]],'area-neg');
+  else if(v0>=0&&v1>=0)h+=poly([[x0,Z],[x0,y0],[x1,y1],[x1,Z]],'area-pos');
+  else{var xc=X((-v0/(v1-v0))*N);
+    h+=poly([[x0,Z],[x0,y0],[xc,Z]],v0<0?'area-neg':'area-pos')+poly([[xc,Z],[x1,y1],[x1,Z]],v0<0?'area-pos':'area-neg')}
+  yTicks(lo,hi).forEach(function(v){
+    var y=Y(v);
+    h+='<line class="'+(v===0?'zero':'gl')+'" x1="'+L+'" x2="'+(W-R)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'"/>';
+    h+='<text class="ax" x="'+(L-8)+'" y="'+(y+4).toFixed(1)+'" text-anchor="end">'+money(v)+'</text>';
   });
-  [0,6,12,18,24].forEach(function(m){h+='<text class="ax" x="'+X(m).toFixed(1)+'" y="'+(H-20)+'" text-anchor="middle">'+m+'</text>'});
-  h+='<text class="ax2" x="'+(L+pw/2).toFixed(1)+'" y="'+(H-4)+'" text-anchor="middle">Months from launch</text>';
-  var pts=vals.map(function(v,m){return X(m).toFixed(1)+','+Y(v).toFixed(1)}).join(' ');
-  h+='<polyline class="ln'+(d.net>0?'':' neg')+'" points="'+pts+'"/>';
-  if(isFinite(d.pay)&&d.pay<=N){
-    var px=X(d.pay);
-    h+='<line class="dash" x1="'+px.toFixed(1)+'" x2="'+px.toFixed(1)+'" y1="'+T+'" y2="'+(H-B)+'"/>';
-    h+='<circle class="mk" cx="'+px.toFixed(1)+'" cy="'+Y(0).toFixed(1)+'" r="6"/>';
-    h+='<text class="val" x="'+Math.min(px+10,W-R-120).toFixed(1)+'" y="'+(T+14)+'">Payback at '+d.pay.toFixed(1)+' months</text>';
+  var st=xStep(N);
+  for(var m=0;m<=N+1e-9;m+=st){h+='<text class="ax" x="'+X(m).toFixed(1)+'" y="'+(H-B+18)+'" text-anchor="middle">'+m+'</text>'}
+  h+='<text class="ax2" x="'+(L+pw/2).toFixed(1)+'" y="'+(H-6)+'" text-anchor="middle">Months from launch (12 = one year)</text>';
+  h+='<path class="ln'+(d.net>0?'':' neg')+'" d="M'+x0.toFixed(1)+' '+y0.toFixed(1)+'L'+x1.toFixed(1)+' '+y1.toFixed(1)+'"/>';
+  if(build>0){
+    h+='<circle cx="'+x0.toFixed(1)+'" cy="'+y0.toFixed(1)+'" r="4" fill="var(--indigo)"/>';
+    h+='<text class="pay-lab" x="'+(x0+8).toFixed(1)+'" y="'+(y0-10).toFixed(1)+'">Build cost '+money(-build)+'</text>';
   }
-  $('ch-cum').innerHTML=h+'</svg>';
+  if(hasPay&&d.pay<=N){
+    var px=X(d.pay),left=(px-L)>150;
+    h+='<line class="dash" x1="'+px.toFixed(1)+'" x2="'+px.toFixed(1)+'" y1="'+T+'" y2="'+(H-B)+'"/>';
+    h+='<circle class="mk" cx="'+px.toFixed(1)+'" cy="'+Z.toFixed(1)+'" r="6"/>';
+    h+='<text class="pay-lab" x="'+(left?px-8:px+8).toFixed(1)+'" y="'+(T+12)+'" text-anchor="'+(left?'end':'start')+'">Break-even: month '+d.pay.toFixed(1)+'</text>';
+    h+='<text class="ax2" x="'+(left?px-8:px+8).toFixed(1)+'" y="'+(T+27)+'" text-anchor="'+(left?'end':'start')+'">'+durText(d.pay)+' after launch</text>';
+  }else if(hasPay){
+    h+='<text class="pay-lab" x="'+(W-R-4)+'" y="'+(T+12)+'" text-anchor="end">'+(d.pay>240?'Break-even is more than 20 years away':'Break-even is after month '+N+': about month '+d.pay.toFixed(1))+'</text>';
+  }
+  var ey=(y1-10<T+4)?y1+18:y1-10;
+  h+='<circle cx="'+x1.toFixed(1)+'" cy="'+y1.toFixed(1)+'" r="4" fill="'+(v1>=0?'var(--green)':'var(--indigo)')+'"/>';
+  h+='<text class="val" x="'+(x1-8).toFixed(1)+'" y="'+ey.toFixed(1)+'" text-anchor="end">'+signed(v1,money)+' at month '+N+'</text>';
+  $(id).innerHTML=h+'</svg>';
+}
+function chartCum(d){drawCum('ch-cum',24,d);note24(d)}
+function note24(d){
+  var el=$('cum-note'),m=d.pay;
+  if(!(d.net>0))el.textContent='No payback at these settings: expected savings do not cover the yearly run cost, so the gap grows every month. See Payback and return.';
+  else if(S.build<=0)el.textContent='There is no build cost, so the benefit starts from month 0 and grows by '+whole(d.net/12)+' a month.';
+  else if(m<=24)el.textContent='Break-even at month '+m.toFixed(1)+' ('+durText(m)+'). After that, every month adds about '+whole(d.net/12)+'.';
+  else if(m>240)el.innerHTML='Break-even is more than 20 years away at these settings. <button class="linkish" type="button" data-open-pay>Open Payback and return</button> for the detail.';
+  else el.innerHTML='Break-even comes after month 24, at about month '+m.toFixed(1)+' ('+durText(m)+'). <button class="linkish" type="button" data-open-pay>Open Payback and return</button> to see when it happens and by how much.';
+}
+function story(d){
+  var t='Measured against the AI spend we would have anyway, LOOM costs '+whole(S.build)+' to build and '+whole(S.run)+' a year to run. At these settings it saves about '+whole(d.total)+' a year, which leaves '+whole(d.net)+' a year after running costs.';
+  if(!(d.net>0))return t+' That is not enough to cover the running cost, so there is no payback.';
+  if(S.build<=0)return t+' There is no build cost, so the benefit starts straight away.';
+  var f=cumAt(d,60);
+  t+=' The build cost is recovered after about '+payWords(d.pay)+', and after that every year adds about '+whole(d.net)+'.';
+  if(f>=0)t+=' After 5 years you are ahead by '+whole(f)+', a return of '+pctText(f/S.build*100)+' on the build cost.';
+  else t+=' After 5 years you are still behind by '+whole(-f)+'.';
+  return t;
+}
+function renderPay(d){
+  var N=payHorizon(d.pay,d.net),build=S.build,hasPay=d.net>0,endV=cumAt(d,N),msg='';
+  drawCum('ch-pay',N,d);
+  if(!hasPay)msg='There is no payback at these settings. Expected savings ('+whole(d.total)+' a year) do not cover the yearly run cost ('+whole(S.run)+'), so the gap grows every month. Raise the discount or the volume moved to lighter models, or lower the run cost.';
+  else if(isFinite(d.pay)&&d.pay>N)msg='Break-even comes after '+payWords(d.pay)+', beyond the 20 years shown here. A smaller build cost, a bigger saving or a lower run cost would bring it closer.';
+  $('pay-warn').hidden=!msg;$('pay-warn').textContent=msg;
+  var be,beSub;
+  if(!hasPay){be='None';beSub='Savings do not cover the run cost'}
+  else if(build<=0){be='Immediate';beSub='No build cost to recover'}
+  else if(d.pay>240){be='Over 20 yrs';beSub='Longer than the chart shows'}
+  else{be=durText(d.pay);beSub='Month '+d.pay.toFixed(1)+' after launch'}
+  $('pt-be').textContent=be;$('pt-be-sub').textContent=beSub;
+  $('pt-end').textContent=signed(endV,money);$('pt-end').className='big'+(endV>0?' good':'');
+  $('pt-end-sub').textContent='after '+N+' months ('+durText(N)+')';
+  var roi=build>0?endV/build*100:null;
+  $('pt-roi').textContent=roi===null?'n/a':pctText(roi);$('pt-roi').className='big'+(roi!==null&&roi>0?' good':'');
+  $('pt-roi-sub').textContent=build>0?'Net benefit ÷ build cost, at month '+N:'Needs a build cost above $0';
+  $('pt-net').textContent=money(d.net);
+  $('pt-net-sub').textContent=money(d.total)+' savings − '+money(S.run)+' run cost';
+  $('pay-story').textContent=story(d);
+  $('ms-wrap').hidden=!hasPay;
+  $('milestones').innerHTML=[[12,'Year 1'],[24,'Year 2'],[36,'Year 3'],[60,'Year 5']].map(function(r){
+    var sv=(d.net/12)*r[0],nb=sv-build,ro=build>0?nb/build*100:null;
+    return '<tr><td>'+r[1]+'</td><td class="r num">'+whole(sv)+'</td><td class="r num">'+whole(nb)+'</td><td class="r num">'+(ro===null?'n/a':pctText(ro))+'</td><td>'+(nb>0?'In profit':(nb===0?'Break-even':'Not yet'))+'</td></tr>';
+  }).join('');
 }
 
 /* ---------- render ---------- */
@@ -1001,53 +1237,94 @@ function render(){
   $('ov-sav').textContent=money(d.total);
   var pct=d.exp>0?Math.round(d.total/d.exp*100):0;
   $('ov-sav-sub').textContent=S.disc+'% discount and '+S.shift+' points of volume on lighter models ('+pct+'% of spend)';
-  $('ov-pay').textContent=isFinite(d.pay)?d.pay.toFixed(1)+' months':'No payback';
-  $('ov-pay-sub').textContent='On a '+money(S.build)+' build (placeholder)';
+  $('ov-pay').textContent=!isFinite(d.pay)?'No payback':(S.build<=0?'Immediate':d.pay.toFixed(1)+' months');
+  $('ov-pay-sub').textContent=S.build<=0?'No build cost':'On a '+money(S.build)+' build'+(S.run>0?' and '+money(S.run)+' a year to run':'')+' (placeholders)';
   $('c-ceil').textContent=money(d.ceil);
   $('c-exp').textContent=money(d.exp);
   $('c-sav').textContent=money(d.total);
   $('c-net').textContent=money(d.net);
-  $('c-pay').textContent=isFinite(d.pay)?d.pay.toFixed(1)+' mo':'None';
+  $('c-pay').textContent=payShort(d);
   $('util-v').textContent=S.util+'%';
   $('disc-v').textContent=S.disc+'%';
   $('shift-v').textContent=S.shift+'%';
-  chartTier(d);chartFall(d);chartCum(d);
+  chartTier(d);chartFall(d);chartCum(d);renderPay(d);
+  $('echo-build').textContent='= '+whole(S.build);
+  $('echo-run').textContent='= '+whole(S.run)+' a year';
   var rows=[
     ['Negotiated discount, 5%','Expected spend × 5%',d.exp*0.05],
     ['Negotiated discount, 10%','Expected spend × 10%',d.exp*0.10],
     ['Lighter models, 10 points of volume','Expected spend × 10% × (1 − 0.33)',d.exp*0.10*(1-LIGHT_W)],
+    ['Batch APIs, 10 points of spend moved','Expected spend × 10% × 50% (work that can wait)',d.exp*0.10*0.5],
+    ['Shared reserved capacity (PTU)','One reservation shared by all teams','Not sized'],
     ['Rollover protection, per 10% shortfall','Expected spend × 10%, dollars protected',d.exp*0.10],
     ['Right-sized commitment','Ceiling − expected spend, dollars avoided',d.ceil-d.exp]
   ];
-  $('levers').innerHTML=rows.map(function(r){return '<tr><td>'+r[0]+'</td><td class="muted">'+r[1]+'</td><td class="r num"><b>'+whole(Math.round(r[2]))+'</b></td></tr>'}).join('');
+  $('levers').innerHTML=rows.map(function(r){return '<tr><td>'+r[0]+'</td><td class="muted">'+r[1]+'</td><td class="r num"><b>'+(typeof r[2]==='string'?r[2]:whole(Math.round(r[2])))+'</b></td></tr>'}).join('');
 }
 
 /* ---------- inputs ---------- */
+/* every typed value goes through here: empty, text, negative and absurd values are corrected and explained */
+var WARN={};
+function showWarn(){
+  var m=Object.keys(WARN).map(function(k){return WARN[k]}).filter(Boolean),el=$('input-warn');
+  el.hidden=!m.length;el.textContent=m.join(' ');
+}
+function readNum(el,o,announce){
+  var raw=String(el.value==null?'':el.value).trim(),n=raw===''?NaN:Number(raw),msg='';
+  if(raw===''){n=0;if(announce)msg=o.label+' was empty, so 0 is used.'}
+  else if(!isFinite(n)){n=0;msg=o.label+' is not a number, so 0 is used.'}
+  if(n<o.min){n=o.min;msg=o.label+' cannot be below '+(o.dollar?whole(o.min):o.min)+', so '+(o.dollar?whole(o.min):o.min)+' is used.'}
+  if(n>o.max){n=o.max;msg=o.label+' is capped at '+(o.dollar?whole(o.max):credits(o.max))+'.'}
+  if(o.int)n=Math.round(n);
+  WARN[o.id]=msg;showWarn();
+  return n;
+}
+function bindNum(id,o,apply){
+  var el=$(id);o.id=id;
+  el.addEventListener('input',function(){apply(readNum(el,o,false));render()});
+  el.addEventListener('change',function(){var n=readNum(el,o,true);el.value=o.int?String(n):trim(n);apply(n);render()});
+}
+function setTab(which){
+  var pay=which==='pay';
+  $('tab-24').setAttribute('aria-selected',pay?'false':'true');
+  $('tab-pay').setAttribute('aria-selected',pay?'true':'false');
+  $('tab-24').tabIndex=pay?-1:0;$('tab-pay').tabIndex=pay?0:-1;
+  $('panel-24').hidden=pay;$('panel-pay').hidden=!pay;
+  render();
+}
 function buildInputs(){
   var g=$('split-grid');
   g.innerHTML='<span class="h">Tier</span><span class="h">Share</span><span class="h u">Users</span>'+
-    TIERS.map(function(t,i){return '<label for="sh'+i+'">'+t.n+'</label><span class="pct"><input id="sh'+i+'" type="number" min="0" step="0.1" inputmode="decimal"></span><input id="cn'+i+'" type="number" min="0" step="1" inputmode="numeric" aria-label="'+t.n+' users">'}).join('')+
+    TIERS.map(function(t,i){return '<label for="sh'+i+'">'+t.n+'</label><span class="pct"><input id="sh'+i+'" type="number" min="0" max="100" step="0.1" inputmode="decimal"></span><input id="cn'+i+'" type="number" min="0" step="1" inputmode="numeric" aria-label="'+t.n+' users">'}).join('')+
     '<span class="h">Total</span><span class="tot" id="sh-total"></span><span class="tot" id="su-total"></span>';
-  var tot=$('total');
-  tot.addEventListener('input',function(){setTotal(tot.value);render()});
+  bindNum('total',{label:'Total users',min:0,max:1e6,int:true},setTotal);
   TIERS.forEach(function(t,i){
-    $('sh'+i).addEventListener('input',function(){setShare(i,$('sh'+i).value);render()});
-    $('cn'+i).addEventListener('input',function(){setCount(i,$('cn'+i).value);render()});
+    bindNum('sh'+i,{label:t.n+' share',min:0,max:100},function(n){setShare(i,n)});
+    bindNum('cn'+i,{label:t.n+' users',min:0,max:1e6,int:true},function(n){setCount(i,n)});
   });
+  bindNum('in-build',{label:'Build cost',min:0,max:1e10,dollar:true},function(n){S.build=n});
+  bindNum('in-run',{label:'Run cost',min:0,max:1e10,dollar:true},function(n){S.run=n});
   [['util','util'],['disc','disc'],['shift','shift']].forEach(function(p){
-    var el=$(p[0]); el.value=S[p[1]];
+    var el=$(p[0]);el.value=S[p[1]];
     el.addEventListener('input',function(){S[p[1]]=parseFloat(el.value)||0;render()});
   });
-  [['in-build','build'],['in-run','run']].forEach(function(p){
-    var el=$(p[0]); el.value=S[p[1]];
-    el.addEventListener('input',function(){S[p[1]]=Math.max(0,parseFloat(el.value)||0);render()});
-  });
+  $('in-build').value=S.build;$('in-run').value=S.run;
   $('reset').addEventListener('click',function(){
-    S=fresh();
+    S=fresh();WARN={};showWarn();
     $('util').value=S.util;$('disc').value=S.disc;$('shift').value=S.shift;$('in-build').value=S.build;$('in-run').value=S.run;
     render();
   });
-  $('util').value=S.util;$('disc').value=S.disc;$('shift').value=S.shift;$('in-build').value=S.build;$('in-run').value=S.run;
+  /* chart tabs */
+  $('tab-24').addEventListener('click',function(){setTab('24')});
+  $('tab-pay').addEventListener('click',function(){setTab('pay')});
+  ['tab-24','tab-pay'].forEach(function(id){
+    $(id).addEventListener('keydown',function(e){
+      var k=e.key;if(k!=='ArrowLeft'&&k!=='ArrowRight'&&k!=='Home'&&k!=='End')return;
+      e.preventDefault();e.stopPropagation();
+      var to=(k==='ArrowRight'||k==='End')?'pay':'24';setTab(to);$('tab-'+to).focus();
+    });
+  });
+  $('cum-note').addEventListener('click',function(e){if(e.target&&e.target.hasAttribute&&e.target.hasAttribute('data-open-pay')){setTab('pay');$('tab-pay').focus()}});
 }
 
 /* ---------- tiers table + try-it ---------- */
@@ -1104,7 +1381,7 @@ function initCarousels(){
 }
 
 /* ---------- pages ---------- */
-var PAGES=['overview','how','costs','vendors','build','roadmap'];
+var PAGES=['overview','gateway','how','costs','vendors','build','roadmap'];
 function pageEl(p){return document.querySelector('section.page[id="'+p+'"]')}
 function show(id,scroll){
   if(PAGES.indexOf(id)<0)id='overview';
@@ -1147,7 +1424,7 @@ $('theme').addEventListener('click',function(){
 });
 
 /* ---------- init ---------- */
-weave();buildInputs();buildTiers();buildTry();initCarousels();render();
+weave();gatewayDiagram();buildInputs();buildTiers();buildTry();initCarousels();render();
 show((location.hash||'#overview').slice(1),false);
 })();
 </script>
